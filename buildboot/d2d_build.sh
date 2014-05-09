@@ -4,7 +4,7 @@ set -e
 echo "---> clean up the root directory"
 (
 	cd $BUILDDIR && mv boot/vmlinuz* ../vmlinuz
-	chroot $BUILDDIR apt-get clean
+	fakechroot chroot $BUILDDIR apt-get clean
 	rm -rf boot
 ) 
 echo "---> copying includes.chroot"
@@ -17,7 +17,7 @@ echo "---> running hooks"
 	cd $BUILDDIR/hooks
 	for i in *.chroot; do
 		echo ' ---> running hook: ' $i
-		chroot $BUILDDIR /hooks/$i
+		fakechroot chroot $BUILDDIR /hooks/$i
 	done
 	rm -rf $BUILDDIR/hooks
 )

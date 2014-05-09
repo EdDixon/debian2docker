@@ -3,4 +3,4 @@ set -e
 
 #debootstrap
 echo "---> debootstrapping"
-debootstrap --include="$PACKAGES" --variant=minbase $SUITE $BUILDDIR $MIRROR
+fakechroot debootstrap --include="$PACKAGES" --variant=fakechroot --variant=minbase $SUITE $BUILDDIR $MIRROR
